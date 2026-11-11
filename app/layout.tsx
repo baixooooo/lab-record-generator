@@ -1,22 +1,15 @@
 import type { Metadata, Viewport } from 'next';
-import { Josefin_Sans } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import ClickSoundListener from '@/components/ClickSoundListener';
-
-const josefinSans = Josefin_Sans({
-  subsets: ['latin'],
-  variable: '--font-josefin-sans',
-  display: 'swap',
-});
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://labora.nikhil-dev.in';
 
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#fafafa' },
-    { media: '(prefers-color-scheme: dark)', color: '#09090b' },
+    { media: '(prefers-color-scheme: dark)', color: '#0e0e0f' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -25,7 +18,6 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  // Front-loading high-volume keyword tokens
   title: {
     default: 'Saveetha Lab Record Generator | Labora - SEC Lab Records & QR Format',
     template: '%s | Labora - Lab Record Generator',
@@ -102,7 +94,6 @@ export const metadata: Metadata = {
   category: 'education',
 };
 
-// Unified Linked Entity Schema (@graph) for Google Knowledge Graph
 const jsonLdGraph = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -199,15 +190,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${josefinSans.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head>
         <link rel="canonical" href={`${siteUrl}/`} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Josefin+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
         />
       </head>
-      <body className={`${josefinSans.className} min-h-full flex flex-col font-sans bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased selection:bg-blue-500 selection:text-white transition-colors duration-150`}>
+      <body className="min-h-full flex flex-col font-sans antialiased transition-colors duration-150">
         <ThemeProvider>
           <AuthProvider>
             <ClickSoundListener />
