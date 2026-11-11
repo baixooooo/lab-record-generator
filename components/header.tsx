@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useTheme } from '@/context/ThemeContext';
 import {
   FlaskConical,
-  FileEdit,
-  History,
   Sun,
   Moon,
   LogOut,
@@ -21,6 +20,7 @@ import { isSoundMuted, toggleSoundMuted } from '@/lib/sound';
 
 export default function Header({ check = true }: { check?: boolean } = {}) {
   const pathname = usePathname();
+  const shouldReduceMotion = useReducedMotion();
   const { user, loading, signOutUser } = useAuth();
   const { isDark, toggleTheme } = useTheme();
   const [muted, setMuted] = useState(false);
@@ -78,52 +78,70 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
   };
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full border-b backdrop-blur-md transition-colors duration-200 ${
-        isDark
-          ? 'bg-neutral-950/80 border-neutral-800/80 text-white'
-          : 'bg-white/80 border-neutral-200/70 text-neutral-900'
-      }`}
-    >
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-40 w-full border-b border-[#E5E5E5] dark:border-[#303033] bg-[#FAFAFA]/90 dark:bg-[#0E0E0F]/90 backdrop-blur-md transition-colors duration-200">
+      <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4 sm:px-6">
         {/* Left: Brand & Tab Navigation */}
-        <div className="flex items-center gap-5 sm:gap-7">
-          {/* Brand */}
+        <div className="flex items-center gap-6 sm:gap-8">
+          {/* Brand Logo & Wordmark */}
           <Link
             href="/dashboard"
-            className="group flex items-center gap-2 transition-opacity hover:opacity-90 select-none"
+            className="group flex items-center gap-2 select-none transition-opacity hover:opacity-90"
           >
-            <FlaskConical className="h-5 w-5 text-neutral-950 dark:text-white transition-transform group-hover:scale-105" />
-            <span className="text-sm font-bold tracking-tight text-neutral-950 dark:text-white">
+            <div className="flex h-7 w-7 items-center justify-center rounded-md  text-black transition-transform group-hover:scale-105">
+              <FlaskConical className="h-4 w-4 text-black" strokeWidth={2.2} />
+            </div>
+            <span className="font-heading text-sm font-bold tracking-tight text-[#171717] dark:text-[#F4F4F5]">
               Labora
             </span>
           </Link>
 
-          {/* Segmented Pill Navigation */}
-          <nav className="flex items-center gap-1 rounded-full border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-100/80 dark:bg-neutral-900/80 p-0.5 shadow-inner">
+          {/* Simple Horizontal Navigation: Editor    History */}
+          <nav className="flex items-center gap-6">
             <Link
               href="/dashboard"
-              className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-150 ${
+              aria-current={isEditorActive ? 'page' : undefined}
+              className={`relative py-4 text-xs sm:text-sm font-medium transition-colors ${
                 isEditorActive
-                  ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white shadow-xs'
-                  : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100'
+                  ? 'text-[#171717] dark:text-[#F4F4F5]'
+                  : 'text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5]'
               }`}
             >
-              <FileEdit className="h-3.5 w-3.5" />
-              <span>Editor</span>
+              Editor
+              {isEditorActive && (
+                <motion.div
+                  layoutId={shouldReduceMotion ? undefined : 'header-active-nav'}
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#171717] dark:bg-[#F4F4F5]"
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0 }
+                      : { type: 'spring', stiffness: 500, damping: 35 }
+                  }
+                />
+              )}
             </Link>
 
             <Link
               href="/history"
               id="tour-history-btn"
-              className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-150 ${
+              aria-current={isHistoryActive ? 'page' : undefined}
+              className={`relative py-4 text-xs sm:text-sm font-medium transition-colors ${
                 isHistoryActive
-                  ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white shadow-xs'
-                  : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100'
+                  ? 'text-[#171717] dark:text-[#F4F4F5]'
+                  : 'text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5]'
               }`}
             >
-              <History className="h-3.5 w-3.5" />
-              <span>History</span>
+              History
+              {isHistoryActive && (
+                <motion.div
+                  layoutId={shouldReduceMotion ? undefined : 'header-active-nav'}
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#171717] dark:bg-[#F4F4F5]"
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0 }
+                      : { type: 'spring', stiffness: 500, damping: 35 }
+                  }
+                />
+              )}
             </Link>
           </nav>
         </div>
@@ -135,12 +153,12 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
             onClick={() => toggleTheme()}
             title={isDark ? 'Switch to Light mode' : 'Switch to Dark mode'}
             aria-label="Toggle theme"
-            className="flex h-8.5 w-8.5 items-center justify-center rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white/90 dark:bg-neutral-900/80 text-neutral-600 dark:text-neutral-300 shadow-2xs transition-all hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white active:scale-95 cursor-pointer"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B5BDB]/40 flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition active:scale-95 cursor-pointer"
           >
             {isDark ? (
-              <Sun className="h-4 w-4 transition-transform hover:rotate-45" />
+              <Sun className="h-4 w-4" />
             ) : (
-              <Moon className="h-4 w-4 transition-transform hover:-rotate-12" />
+              <Moon className="h-4 w-4" />
             )}
           </button>
 
@@ -149,10 +167,10 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
             onClick={handleToggleMute}
             title={muted ? 'Unmute UI sound' : 'Mute UI sound'}
             aria-label={muted ? 'Unmute UI sound' : 'Mute UI sound'}
-            className="flex h-8.5 w-8.5 items-center justify-center rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white/90 dark:bg-neutral-900/80 text-neutral-600 dark:text-neutral-300 shadow-2xs transition-all hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white active:scale-95 cursor-pointer"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B5BDB]/40 flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition active:scale-95 cursor-pointer"
           >
             {muted ? (
-              <VolumeX className="h-4 w-4 text-neutral-400 dark:text-neutral-500" />
+              <VolumeX className="h-4 w-4 text-[#737373] dark:text-[#A1A1AA]" />
             ) : (
               <Volume2 className="h-4 w-4" />
             )}
@@ -160,17 +178,17 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
 
           {/* User Profile / Auth Section */}
           {loading ? (
-            <div className="h-8.5 w-8.5 rounded-full bg-neutral-200 dark:bg-neutral-800 animate-pulse" />
+            <div className="h-8 w-8 rounded-lg bg-neutral-200 dark:bg-neutral-800 animate-pulse" />
           ) : user ? (
             <div className="relative" ref={profileMenuRef}>
               <button
                 onClick={() => setIsProfileOpen((prev) => !prev)}
-                className="flex items-center gap-1.5 rounded-full p-0.5 border border-neutral-200/90 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition cursor-pointer select-none active:scale-95"
+                className="flex h-8 items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] px-2 text-xs text-[#171717] dark:text-[#F4F4F5] transition hover:border-neutral-400 dark:hover:border-neutral-600 active:scale-95 cursor-pointer select-none"
                 aria-expanded={isProfileOpen}
                 aria-haspopup="true"
                 title={user.displayName || user.email || 'User Account'}
               >
-                <div className="flex h-7.5 w-7.5 items-center justify-center overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-bold">
+                <div className="flex h-5 w-5 items-center justify-center overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-700 text-[10px] font-bold text-[#171717] dark:text-[#F4F4F5]">
                   {user.photoURL ? (
                     <img
                       src={user.photoURL}
@@ -182,8 +200,11 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
                     <span>{getInitials()}</span>
                   )}
                 </div>
+                <span className="hidden sm:inline max-w-[100px] truncate text-xs font-medium">
+                  {user.displayName?.split(' ')[0] || 'Account'}
+                </span>
                 <ChevronDown
-                  className={`h-3 w-3 text-neutral-400 mr-1 transition-transform duration-150 ${
+                  className={`h-3 w-3 text-[#737373] dark:text-[#A1A1AA] transition-transform duration-150 ${
                     isProfileOpen ? 'rotate-180' : ''
                   }`}
                 />
@@ -191,12 +212,12 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
 
               {/* Profile Dropdown Menu */}
               {isProfileOpen && (
-                <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 p-2 shadow-xl backdrop-blur-md z-50 animate-in fade-in zoom-in-95 duration-100">
-                  <div className="px-3 py-2 border-b border-neutral-300 dark:border-neutral-800 mb-1">
-                    <p className="text-xs font-semibold text-neutral-950 dark:text-white truncate">
-                      {user.displayName || 'Lab Student'}
+                <div className="absolute right-0 mt-2 w-60 origin-top-right rounded-xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-1.5 shadow-xl backdrop-blur-md z-50 animate-in fade-in zoom-in-95 duration-100">
+                  <div className="px-3 py-2 border-b border-[#E5E5E5] dark:border-[#303033] mb-1">
+                    <p className="text-xs font-semibold text-[#171717] dark:text-[#F4F4F5] truncate">
+                      {user.displayName || 'Student'}
                     </p>
-                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 truncate mt-0.5">
+                    <p className="text-[11px] text-[#737373] dark:text-[#A1A1AA] truncate mt-0.5">
                       {user.email || 'No email attached'}
                     </p>
                   </div>
@@ -207,7 +228,7 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
                       signOutUser();
                     }}
                     type="button"
-                    className="w-full flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition active:scale-98 cursor-pointer"
+                    className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition active:scale-98 cursor-pointer"
                   >
                     <LogOut className="h-3.5 w-3.5" />
                     <span>Sign Out</span>
@@ -218,7 +239,7 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
           ) : (
             <Link
               href="/login"
-              className="inline-flex items-center gap-1.5 rounded-full bg-neutral-950 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs transition hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 active:scale-95"
+              className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-[#171717] dark:bg-[#F4F4F5] px-3 text-xs font-medium text-white dark:text-[#171717] transition hover:opacity-90 active:scale-95 cursor-pointer"
             >
               <UserIcon className="h-3.5 w-3.5" />
               <span>Sign In</span>
