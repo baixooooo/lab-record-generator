@@ -31,35 +31,35 @@ export const TOUR_STEPS: TourStep[] = [
     title: '1. Course & Student Details',
     description:
       'Fill in your Course Title, Student Name, and Register Number. This generates the official college header and declaration.',
-    icon: <FileSpreadsheet className="h-5 w-5 text-violet-600 dark:text-violet-400" />,
+    icon: <FileSpreadsheet className="h-5 w-5 text-[#171717] dark:text-[#F4F4F5]" />,
   },
   {
     targetId: 'tour-exp-card-0',
     title: '2. Experiments & Live QR Code',
     description:
       'Enter the experiment title, date, and GitHub repository link. High-resolution verification QR codes generate in real-time.',
-    icon: <QrCode className="h-5 w-5 text-violet-600 dark:text-violet-400" />,
+    icon: <QrCode className="h-5 w-5 text-[#171717] dark:text-[#F4F4F5]" />,
   },
   {
     targetId: 'tour-add-btn',
     title: '3. Add More Experiments',
     description:
       "Click '+ Add Experiment' to append new rows. Experiment numbers and formatting are calculated sequentially.",
-    icon: <PlusCircle className="h-5 w-5 text-violet-600 dark:text-violet-400" />,
+    icon: <PlusCircle className="h-5 w-5 text-[#171717] dark:text-[#F4F4F5]" />,
   },
   {
     targetId: 'tour-action-bar',
     title: '4. Preview & Export Document',
     description:
       'Preview the exact table formatting, then export ready-to-print PDFs or editable Word DOCX files with one click.',
-    icon: <DownloadCloud className="h-5 w-5 text-violet-600 dark:text-violet-400" />,
+    icon: <DownloadCloud className="h-5 w-5 text-[#171717] dark:text-[#F4F4F5]" />,
   },
   {
     targetId: 'tour-history-btn',
     title: '5. View Past Records',
     description:
       'Access, re-download, or edit any previously generated lab records anytime from the History tab.',
-    icon: <History className="h-5 w-5 text-violet-600 dark:text-violet-400" />,
+    icon: <History className="h-5 w-5 text-[#171717] dark:text-[#F4F4F5]" />,
   },
 ];
 
@@ -278,7 +278,7 @@ export default function WorkspaceTour() {
               height: targetRect.height + 12,
             }}
             transition={{ type: 'spring', stiffness: 350, damping: 32 }}
-            className="fixed pointer-events-none z-45 rounded-[18px] ring-2 ring-violet-500/80 dark:ring-violet-400/80 shadow-[0_0_30px_rgba(124,58,237,0.25)]"
+            className="fixed pointer-events-none z-45 rounded-[18px] ring-2 ring-neutral-900/80 dark:ring-neutral-100/80 shadow-[0_0_20px_rgba(0,0,0,0.2)]"
           />
         )}
 
@@ -290,11 +290,11 @@ export default function WorkspaceTour() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="relative z-50 w-full max-w-md pointer-events-auto rounded-3xl border border-neutral-200/90 dark:border-neutral-800 bg-white/95 dark:bg-neutral-900/95 p-5 sm:p-6 text-neutral-950 dark:text-neutral-50 shadow-[0_20px_50px_rgba(0,0,0,0.12)] backdrop-blur-md"
+            className="relative z-50 w-full max-w-md pointer-events-auto rounded-2xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-5 sm:p-6 text-[#171717] dark:text-[#F4F4F5] shadow-2xl backdrop-blur-md"
           >
             {/* Top Bar */}
             <div className="flex items-center justify-between gap-3 mb-4">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-500/10 dark:bg-violet-400/10 border border-violet-500/20 px-2.5 py-1 text-[11px] font-bold text-violet-700 dark:text-violet-300">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-[#E5E5E5] dark:border-[#303033] px-2.5 py-1 text-[11px] font-bold text-[#171717] dark:text-[#F4F4F5]">
                 <Sparkles className="h-3 w-3" />
                 <span>
                   Step {currentStep + 1} of {TOUR_STEPS.length}
@@ -304,7 +304,7 @@ export default function WorkspaceTour() {
               <button
                 onClick={handleFinishTour}
                 type="button"
-                className="rounded-full p-1 text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-700 dark:hover:text-neutral-200 transition cursor-pointer"
+                className="rounded-full p-1 text-[#737373] hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-[#171717] dark:hover:text-[#F4F4F5] transition cursor-pointer"
                 title="Close tour"
               >
                 <X className="h-4 w-4" />
@@ -313,21 +313,21 @@ export default function WorkspaceTour() {
 
             {/* Step Body */}
             <div className="flex items-start gap-3.5 mb-5">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/70 dark:border-neutral-700/70">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-[#E5E5E5] dark:border-[#303033]">
                 {currentTour.icon}
               </div>
               <div className="min-w-0">
-                <h3 className="text-sm sm:text-base font-bold text-neutral-950 dark:text-neutral-50 tracking-tight">
+                <h3 className="font-heading text-sm sm:text-base font-bold text-[#171717] dark:text-[#F4F4F5] tracking-tight">
                   {currentTour.title}
                 </h3>
-                <p className="mt-1 text-xs sm:text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
+                <p className="mt-1 text-xs sm:text-[13px] leading-relaxed text-[#737373] dark:text-[#A1A1AA]">
                   {currentTour.description}
                 </p>
               </div>
             </div>
 
             {/* Footer Navigation */}
-            <div className="flex items-center justify-between border-t border-neutral-100 dark:border-neutral-800 pt-3.5">
+            <div className="flex items-center justify-between border-t border-[#E5E5E5] dark:border-[#303033] pt-3.5">
               {/* Progress dots */}
               <div className="flex items-center gap-1.5">
                 {TOUR_STEPS.map((_, idx) => (
