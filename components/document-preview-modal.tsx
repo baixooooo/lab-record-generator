@@ -173,58 +173,28 @@ export default function DocumentPreviewModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 12 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className={`relative z-10 flex flex-col w-full h-full sm:h-[92vh] max-w-5xl rounded-2xl sm:rounded-3xl border shadow-2xl overflow-hidden ${
-              isDark
-                ? 'border-neutral-800 bg-[#09090b] text-white'
-                : 'border-neutral-200 bg-white text-neutral-950'
-            }`}
+            className="relative z-10 flex flex-col w-full h-full sm:h-[92vh] max-w-5xl rounded-2xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#171717] dark:text-[#F4F4F5] shadow-2xl overflow-hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Document Preview"
           >
             {/* Sticky Header Toolbar */}
-            <div
-              className={`flex items-center justify-between px-5 sm:px-7 py-3.5 border-b backdrop-blur-md shrink-0 ${
-                isDark
-                  ? 'border-neutral-800 bg-[#121215]/95 text-white'
-                  : 'border-neutral-200 bg-white/95 text-neutral-950'
-              }`}
-            >
+            <div className="flex items-center justify-between px-5 sm:px-7 py-3.5 border-b border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#171717] dark:text-[#F4F4F5] shrink-0">
               <div className="flex items-center gap-3">
-                <div
-                  className={`flex h-9 w-9 items-center justify-center rounded-xl border ${
-                    isDark
-                      ? 'bg-violet-500/10 text-violet-400 border-violet-500/20'
-                      : 'bg-violet-500/10 text-violet-600 border-violet-500/20'
-                  }`}
-                >
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-neutral-100 dark:bg-neutral-800 text-[#171717] dark:text-[#F4F4F5]">
                   <FileText className="h-4.5 w-4.5" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h2
-                      className={`text-sm sm:text-base font-bold tracking-tight ${
-                        isDark ? 'text-white' : 'text-neutral-950'
-                      }`}
-                    >
+                    <h2 className="font-heading text-sm sm:text-base font-bold tracking-tight text-[#171717] dark:text-[#F4F4F5]">
                       Document Preview
                     </h2>
-                    <span
-                      className={`hidden sm:inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold border ${
-                        isDark
-                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                          : 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
-                      }`}
-                    >
+                    <span className="hidden sm:inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold border border-[#E5E5E5] dark:border-[#303033] bg-neutral-100 dark:bg-neutral-800 text-[#737373] dark:text-[#A1A1AA]">
                       <CheckCircle2 className="h-3 w-3" />
                       SEC Format Verified
                     </span>
                   </div>
-                  <p
-                    className={`text-[11px] ${
-                      isDark ? 'text-neutral-400' : 'text-neutral-500'
-                    }`}
-                  >
+                  <p className="text-[11px] text-[#737373] dark:text-[#A1A1AA]">
                     {experiments.length} {experiments.length === 1 ? 'experiment' : 'experiments'} · Live QR code verification
                   </p>
                 </div>
@@ -237,11 +207,7 @@ export default function DocumentPreviewModal({
                   disabled={isPrinting}
                   type="button"
                   title="Print PDF Document"
-                  className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold shadow-2xs transition active:scale-95 disabled:opacity-50 cursor-pointer ${
-                    isDark
-                      ? 'border-neutral-700 bg-neutral-800 text-neutral-200 hover:bg-neutral-700'
-                      : 'border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-100'
-                  }`}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-semibold shadow-2xs transition active:scale-95 disabled:opacity-50 cursor-pointer"
                 >
                   {isPrinting ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -254,11 +220,7 @@ export default function DocumentPreviewModal({
                 <button
                   onClick={onClose}
                   type="button"
-                  className={`flex h-8.5 w-8.5 items-center justify-center rounded-xl border transition active:scale-95 cursor-pointer ${
-                    isDark
-                      ? 'border-neutral-700 bg-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-700'
-                      : 'border-neutral-200 bg-white text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
-                  }`}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition active:scale-95 cursor-pointer"
                   aria-label="Close modal"
                 >
                   <X className="h-4 w-4" />
@@ -267,11 +229,7 @@ export default function DocumentPreviewModal({
             </div>
 
             {/* Document Paper Container */}
-            <div
-              className={`overflow-auto flex-1 p-3 sm:p-6 lg:p-8 ${
-                isDark ? 'bg-[#09090b]' : 'bg-neutral-100'
-              }`}
-            >
+            <div className="overflow-auto flex-1 p-3 sm:p-6 lg:p-8 bg-[#FAFAFA] dark:bg-[#0E0E0F]">
               <div
                 id="document-preview-paper"
                 style={{ fontFamily: 'Times New Roman, Times, serif' }}
