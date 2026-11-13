@@ -1,49 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
+/* Fonts are loaded from Google Fonts; for optimal production caching next/font is also supported. */
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #fafafa;
-  --foreground: #09090b;
-  --card: #ffffff;
-  --card-foreground: #09090b;
-  --popover: #ffffff;
-  --popover-foreground: #09090b;
-  --primary: #09090b;
-  --primary-foreground: #fafafa;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: #f4f4f5;
-  --accent-foreground: #18181b;
-  --destructive: #ef4444;
-  --destructive-foreground: #fafafa;
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #09090b;
+  /* Labora — Light Mode */
+  --bg-page: #F7F8FA;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F1F3F5;
+  --border-color: #E2E5E9;
+  --text-primary: #14171A;
+  --text-secondary: #5C6470;
+  --text-muted: #8C95A2;
+
+  /* Labora — Muted Slate-Blue Accent */
+  --primary: #3B5BDB;
+  --primary-hover: #364FC7;
+  --primary-fg: #FFFFFF;
+  --primary-soft: #EDF2FF;
+
+  /* Existing component / Tailwind token compatibility */
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-surface);
+  --popover-foreground: var(--text-primary);
+  --primary-foreground: var(--primary-fg);
+  --secondary: var(--bg-subtle);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-subtle);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--primary-soft);
+  --accent-foreground: var(--primary);
+  --destructive: #C2414B;
+  --destructive-foreground: #FFFFFF;
+  --border: var(--border-color);
+  --input: var(--border-color);
+  --ring: var(--primary);
+
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: light;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card: #121215;
-  --card-foreground: #fafafa;
-  --popover: #121215;
-  --popover-foreground: #fafafa;
-  --primary: #fafafa;
-  --primary-foreground: #09090b;
-  --secondary: #18181b;
-  --secondary-foreground: #fafafa;
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-  --accent: #18181b;
-  --accent-foreground: #fafafa;
-  --destructive: #ef4444;
-  --destructive-foreground: #fafafa;
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #fafafa;
+  /* Labora — Dark Mode (Neutral Charcoal & Cobalt Blue) */
+  --bg-page: #0E0E0F;
+  --bg-surface: #191919;
+  --bg-subtle: #222222;
+  --border-color: #303030;
+  --text-primary: #F4F4F5;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+
+  --primary: #3B5BDB;
+  --primary-hover: #364FC7;
+  --primary-fg: #FFFFFF;
+  --primary-soft: rgba(59, 91, 219, 0.16);
+
+  --destructive: #F07178;
+  --destructive-foreground: #FFFFFF;
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-surface);
+  --popover-foreground: var(--text-primary);
+  --secondary: var(--bg-subtle);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-subtle);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--primary-soft);
+  --accent-foreground: var(--primary);
+  --border: var(--border-color);
+  --input: #303030;
+  --ring: var(--primary);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -54,6 +89,8 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -66,15 +103,42 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: var(--font-josefin-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-josefin: var(--font-josefin-sans), sans-serif;
+  --color-surface: var(--bg-surface);
+  --color-subtle: var(--bg-subtle);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+  /* Backward compatibility with old `font-josefin` classes */
+  --font-josefin: var(--font-inter);
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-josefin-sans), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
   font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Space Grotesk is reserved for titles; UI copy remains Inter. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk);
+}
+
+/* Accessible, consistent focus styles for keyboard navigation. */
+:where(button, a, input, textarea, select):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--text-primary);
 }
 
 /* Subtle scrollbar */
@@ -88,10 +152,154 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(150, 150, 150, 0.25);
+  background: rgba(140, 149, 162, 0.28);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(150, 150, 150, 0.45);
+  background: rgba(140, 149, 162, 0.48);
 }
+
+
+/* Authenticated workspace, globally scoped so the public landing page is untouched. */
+
+body:has(.labora-header) {
+  --bg-page: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f5f5f5;
+  --border-color: #e5e5e5;
+  --text-primary: #171717;
+  --text-secondary: #666666;
+  --text-muted: #929292;
+  --primary: #171717;
+  --primary-hover: #363636;
+  --primary-fg: #ffffff;
+  --primary-soft: #f0f0f0;
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+  --secondary: var(--bg-subtle);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-subtle);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--bg-subtle);
+  --accent-foreground: var(--text-primary);
+  --border: var(--border-color);
+  --input: var(--border-color);
+  --ring: #777777;
+  --primary-foreground: var(--primary-fg);
+  background: var(--bg-page);
+  color: var(--text-primary);
+}
+.dark body:has(.labora-header),
+body.dark:has(.labora-header) {
+  --bg-page: #0E0E0F;
+  --bg-surface: #191919;
+  --bg-subtle: #222222;
+  --border-color: #303030;
+  --text-primary: #F4F4F5;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --primary: #3B5BDB;
+  --primary-hover: #364FC7;
+  --primary-fg: #FFFFFF;
+  --primary-soft: rgba(59, 91, 219, 0.16);
+  --ring: #3B5BDB;
+  --card: #191919;
+  --card-foreground: #F4F4F5;
+  --border: #303030;
+  --input: #303030;
+  --popover: #191919;
+  --popover-foreground: #F4F4F5;
+  --secondary: #222222;
+  --secondary-foreground: #F4F4F5;
+  --muted: #222222;
+  --muted-foreground: #A1A1AA;
+  --accent: rgba(59, 91, 219, 0.16);
+  --accent-foreground: #3B5BDB;
+  color-scheme: dark;
+}
+.labora-header, .labora-dashboard { font-family: var(--font-inter, 'Inter', sans-serif); color: var(--text-primary); }
+.labora-dashboard { background: var(--bg-page); }
+.labora-display, .labora-heading { font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif); }
+.labora-mono, .labora-dashboard input[type='date'], .labora-dashboard input[type='url'] { font-family: var(--font-jetbrains-mono, 'JetBrains Mono', monospace); }
+.labora-header { background: color-mix(in srgb, var(--bg-surface) 94%, transparent); border-color: var(--border-color); }
+.labora-header .labora-display { color: var(--text-primary); }
+/* The flask mark stays black in both themes. The white tile keeps it visible in dark mode. */
+.labora-header .labora-brand > svg { color: #080808 !important; }
+.dark .labora-header .labora-brand > svg { background: #ffffff; border-radius: 5px; padding: 2px; width: 23px; height: 23px; }
+.labora-header .labora-tabs { border-radius: 0; background: transparent; }
+.labora-header .labora-navtab { background: transparent !important; border-radius: 0; color: var(--text-secondary); }
+.labora-header .labora-navtab[aria-current='page'] { color: var(--text-primary); }
+.labora-tab-indicator { position: absolute; height: 2px; bottom: -1px; left: 0; right: 0; border-radius: 2px; background: var(--text-primary); }
+.labora-header .labora-header-control { background: var(--bg-surface); border-color: var(--border-color); color: var(--text-secondary); }
+.labora-header .labora-header-control:hover { background: var(--bg-subtle); color: var(--text-primary); }
+.labora-dashboard .labora-panel { background: var(--bg-surface); border: 1px solid var(--border-color); box-shadow: 0 2px 14px #00000006; }
+.labora-dashboard .labora-panel h2, .labora-dashboard h1 { color: var(--text-primary); }
+.labora-dashboard .labora-panel p { color: var(--text-secondary); }
+.labora-dashboard label { color: var(--text-secondary); font-weight: 600; }
+.labora-dashboard .labora-input { background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color); box-shadow: none; }
+.labora-dashboard .labora-input::placeholder { color: var(--text-muted); }
+.labora-dashboard .labora-input:focus { outline: none; border-color: var(--text-secondary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--text-primary) 8%, transparent); }
+.labora-dashboard .labora-primary { background: var(--primary); border: 1px solid var(--primary); color: var(--primary-fg); border-radius: 10px; }
+.labora-dashboard .labora-primary:hover:not(:disabled) { background: var(--primary-hover); }
+.labora-dashboard #tour-add-btn { background: var(--bg-surface); color: var(--text-secondary); border-color: var(--border-color); }
+.labora-dashboard #tour-add-btn:hover { background: var(--bg-subtle); color: var(--text-primary); border-color: var(--text-muted); }
+/* Export buttons are the only differentiated controls; no saturated branding colors. */
+.labora-dashboard #tour-action-bar .labora-export-preview { background: var(--bg-subtle); color: var(--text-primary); border-color: var(--border-color); border-radius: 12px; }
+.labora-dashboard #tour-action-bar .labora-export-docx { background: #f1ede7; color: #665743; border-color: #e5ded3; border-radius: 12px; }
+.dark .labora-dashboard #tour-action-bar .labora-export-docx { background: #222222; color: #F4F4F5; border-color: #303030; }
+.dark .labora-dashboard #tour-action-bar .labora-export-docx:hover:not(:disabled) { background: #2c2c2c; }
+.labora-dashboard #tour-action-bar .labora-export-pdf { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); border-radius: 12px; }
+.labora-dashboard #tour-action-bar button:hover:not(:disabled) { filter: brightness(.96); }
+.dark .labora-dashboard #tour-action-bar button:hover:not(:disabled) { filter: none; }
+.labora-dashboard #tour-action-bar button:disabled { opacity: .43; cursor: not-allowed; }
+.labora-dashboard .labora-dialog { background: var(--bg-surface); border-color: var(--border-color); color: var(--text-primary); }
+.labora-dashboard :focus-visible, .labora-header :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* Dark mode overrides for dashboard surfaces & inputs */
+.dark .labora-dashboard .labora-panel { background: #191919; border-color: #303030; }
+.dark .labora-dashboard .labora-input { background: #141414; border-color: #303030; color: #F4F4F5; }
+.dark .labora-dashboard .labora-input::placeholder { color: #71717A; }
+.dark .labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: #3B5BDB; box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.2); }
+.dark .labora-dashboard #tour-add-btn { background: #191919; border-color: #303030; color: #A1A1AA; }
+.dark .labora-dashboard #tour-add-btn:hover { background: #222222; border-color: #3B5BDB; color: #F4F4F5; }
+.dark .labora-dashboard #tour-action-bar { background: rgba(25, 25, 25, 0.95); border-color: #303030; }
+.dark .labora-dashboard #tour-action-bar .labora-export-preview { background: #222222; border-color: #303030; color: #F4F4F5; }
+.dark .labora-dashboard #tour-action-bar .labora-export-preview:hover:not(:disabled) { background: #2c2c2c; }
+.dark .labora-dashboard #tour-action-bar .labora-export-pdf { background: #3B5BDB; border-color: #3B5BDB; color: #FFFFFF; }
+.dark .labora-dashboard #tour-action-bar .labora-export-pdf:hover:not(:disabled) { background: #364FC7; border-color: #364FC7; }
+.dark .labora-dashboard .labora-dialog { background: #191919; border-color: #303030; color: #F4F4F5; }
+
+@media (prefers-reduced-motion: reduce) { .labora-dashboard *, .labora-header * { scroll-behavior: auto !important; } }
+
+/* History page */
+.labora-history { background: var(--bg-page); color: var(--text-primary); font-family: var(--font-inter); }
+.labora-history .history-card { background: var(--bg-surface); border: 1px solid var(--border-color); }
+.labora-history .history-field { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-primary); }
+.labora-history .history-field::placeholder { color: var(--text-muted); }
+.labora-history .history-field:focus { outline: none; border-color: var(--text-secondary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--text-primary) 7%, transparent); }
+.labora-history .history-button { background: var(--bg-subtle); border: 1px solid var(--border-color); color: var(--text-primary); }
+.labora-history .history-button:hover { background: var(--border-color); }
+.labora-history .history-primary { background: var(--primary); color: var(--primary-fg); }
+.labora-history .history-primary:hover { background: var(--primary-hover); }
+.labora-history .history-subtle { color: var(--text-secondary); }
+.labora-history .history-mono { font-family: var(--font-jetbrains-mono); }
+
+.dark .labora-history { background: #0E0E0F; color: #F4F4F5; }
+.dark .labora-history .history-card { background: #191919; border-color: #303030; }
+.dark .labora-history .history-field { background: #141414; border-color: #303030; color: #F4F4F5; }
+.dark .labora-history .history-field::placeholder { color: #A1A1AA; }
+.dark .labora-history .history-field:focus { border-color: #3B5BDB; box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.2); }
+.dark .labora-history .history-button { background: #222222; border-color: #303030; color: #F4F4F5; }
+.dark .labora-history .history-button:hover { background: #2c2c2c; }
+.dark .labora-history .history-primary { background: #3B5BDB; color: #FFFFFF; }
+.dark .labora-history .history-primary:hover { background: #364FC7; }
+.dark .labora-history .history-subtle { color: #A1A1AA; }
+
+/* Editor validation: invalid fields only, never the whole experiment card. */
+.labora-dashboard .labora-input[aria-invalid="true"] { border-color: #e05260; box-shadow: 0 0 0 3px rgba(224,82,96,.12); }
+.dark .labora-dashboard .labora-input[aria-invalid="true"] { border-color: #fb7185; box-shadow: 0 0 0 3px rgba(251,113,133,.13); }
+.labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.dark .labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: #3B5BDB; box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.2); }
