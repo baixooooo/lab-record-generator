@@ -339,7 +339,7 @@ export default function HistoryPage() {
             exit={{ opacity: 0, y: -10, scale: 0.96 }}
             role="status"
             aria-live="polite"
-            className="fixed top-18 right-4 sm:right-6 z-50 flex items-center gap-3 rounded-xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] px-4 py-3 text-xs font-medium shadow-xl backdrop-blur-md text-[#171717] dark:text-[#F4F4F5]"
+            className="fixed top-18 right-4 sm:right-6 z-50 flex items-center gap-3 rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] px-4 py-3 text-xs font-medium shadow-xl backdrop-blur-md text-[#171717] dark:text-[#F4F4F5]"
           >
             {toastMessage.toLowerCase().includes('fail') ||
             toastMessage.toLowerCase().includes('fill') ||
@@ -348,7 +348,7 @@ export default function HistoryPage() {
                 <AlertCircle className="h-3.5 w-3.5" />
               </div>
             ) : (
-              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-200 dark:bg-neutral-800 text-[#171717] dark:text-[#F4F4F5]">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-200 dark:bg-[#222222] text-[#171717] dark:text-[#F4F4F5]">
                 <Check className="h-3.5 w-3.5" />
               </div>
             )}
@@ -374,7 +374,7 @@ export default function HistoryPage() {
               <button
                 onClick={() => setShowClearConfirm(true)}
                 type="button"
-                className="text-xs px-3 py-2 rounded-lg font-medium text-[#737373] hover:text-rose-600 dark:text-[#A1A1AA] dark:hover:text-rose-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition active:scale-95 cursor-pointer"
+                className="text-xs px-3 py-2 rounded-lg font-medium text-[#737373] hover:text-rose-600 dark:text-[#A1A1AA] dark:hover:text-rose-400 hover:bg-neutral-100 dark:hover:bg-[#222222] transition active:scale-95 cursor-pointer"
               >
                 Clear History
               </button>
@@ -383,7 +383,7 @@ export default function HistoryPage() {
             <button
               onClick={() => handleCreateNewRecord()}
               type="button"
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#3B5BDB] dark:bg-[#5C7CFA] px-3.5 text-xs sm:text-sm font-medium text-white dark:text-[#0D0F12] hover:bg-[#364FC7] dark:hover:bg-[#748FFC] transition active:scale-[0.98] cursor-pointer"
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#3B5BDB] hover:bg-[#364FC7] px-3.5 text-xs sm:text-sm font-medium text-white transition active:scale-[0.98] cursor-pointer"
             >
               <Plus className="h-4 w-4" />
               <span>New Record</span>
@@ -400,7 +400,7 @@ export default function HistoryPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by course title, student name, or register number..."
-              className="w-full h-10 rounded-xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] pl-10 pr-9 text-xs sm:text-sm text-[#171717] dark:text-[#F4F4F5] placeholder-[#737373] dark:placeholder-[#A1A1AA] focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#5C7CFA] focus:ring-2 focus:ring-[#3B5BDB]/15 dark:focus:ring-[#5C7CFA]/20 transition"
+              className="w-full h-10 rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#141414] pl-10 pr-9 text-xs sm:text-sm text-[#171717] dark:text-[#F4F4F5] placeholder-[#737373] dark:placeholder-[#A1A1AA] outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0 transition-colors duration-150"
             />
             {searchQuery && (
               <button
@@ -415,8 +415,8 @@ export default function HistoryPage() {
 
         {/* Empty State */}
         {records.length === 0 ? (
-          <div className="flex flex-col items-center rounded-2xl border border-dashed border-[#E5E5E5] dark:border-[#303033] p-12 text-center bg-[#FFFFFF] dark:bg-[#19191B] shadow-xs">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 dark:bg-neutral-800 text-[#737373] dark:text-[#A1A1AA]">
+          <div className="flex flex-col items-center rounded-2xl border border-dashed border-[#E5E5E5] dark:border-[#303030] p-12 text-center bg-[#FFFFFF] dark:bg-[#191919] shadow-xs">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 dark:bg-[#222222] text-[#737373] dark:text-[#A1A1AA]">
               <History className="h-6 w-6" />
             </div>
             <h3 className="font-heading text-base font-bold tracking-tight text-[#171717] dark:text-[#F4F4F5]">
@@ -428,14 +428,14 @@ export default function HistoryPage() {
             <button
               onClick={() => handleCreateNewRecord()}
               type="button"
-              className="mt-6 inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#3B5BDB] dark:bg-[#5C7CFA] px-4 text-xs sm:text-sm font-medium text-white dark:text-[#0D0F12] hover:bg-[#364FC7] dark:hover:bg-[#748FFC] transition active:scale-[0.98] cursor-pointer"
+              className="mt-6 inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#3B5BDB] hover:bg-[#364FC7] px-4 text-xs sm:text-sm font-medium text-white transition active:scale-[0.98] cursor-pointer"
             >
               <Plus className="h-4 w-4" />
               <span>Create Record</span>
             </button>
           </div>
         ) : filteredRecords.length === 0 ? (
-          <div className="rounded-xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-8 text-center text-[#737373] dark:text-[#A1A1AA]">
+          <div className="rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] p-8 text-center text-[#737373] dark:text-[#A1A1AA]">
             <p className="text-xs sm:text-sm">No records match your search query &ldquo;{searchQuery}&rdquo;.</p>
             <button
               onClick={() => setSearchQuery('')}
@@ -450,11 +450,11 @@ export default function HistoryPage() {
             {filteredRecords.map((record) => (
               <div
                 key={record.id}
-                className="group flex flex-col gap-4 rounded-xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-4 sm:p-5 shadow-xs transition sm:flex-row sm:items-center sm:justify-between"
+                className="group flex flex-col gap-4 rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] p-4 sm:p-5 shadow-xs transition sm:flex-row sm:items-center sm:justify-between"
               >
                 {/* Record Info */}
                 <div className="flex min-w-0 items-start gap-3.5">
-                  <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neutral-100 dark:bg-neutral-800 text-[#737373] dark:text-[#A1A1AA]">
+                  <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neutral-100 dark:bg-[#222222] text-[#737373] dark:text-[#A1A1AA]">
                     <BookOpen className="h-4.5 w-4.5" />
                   </div>
 
@@ -471,7 +471,7 @@ export default function HistoryPage() {
                     </p>
 
                     <div className="mt-2.5 flex flex-wrap items-center gap-2">
-                      <span className="font-mono-code rounded-md bg-neutral-100 dark:bg-neutral-800 border border-[#E5E5E5] dark:border-[#303033] px-2 py-0.5 text-[10px] font-medium text-[#737373] dark:text-[#A1A1AA]">
+                      <span className="font-mono-code rounded-md bg-neutral-100 dark:bg-[#141414] border border-[#E5E5E5] dark:border-[#303030] px-2 py-0.5 text-[10px] font-medium text-[#737373] dark:text-[#A1A1AA]">
                         {record.experiments.length} {record.experiments.length === 1 ? 'exp' : 'exps'}
                       </span>
                       <span className="text-[11px] text-[#737373] dark:text-[#A1A1AA] flex items-center gap-1">
@@ -487,13 +487,13 @@ export default function HistoryPage() {
                 </div>
 
                 {/* Actions: Preview, DOCX, PDF, Edit, Delete */}
-                <div className="flex flex-wrap items-center gap-2 sm:shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#E5E5E5] dark:border-[#303033]">
+                <div className="flex flex-wrap items-center gap-2 sm:shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#E5E5E5] dark:border-[#303030]">
                   {/* Preview Button */}
                   <button
                     onClick={() => handlePreviewRecord(record)}
                     type="button"
                     title="Preview Document"
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-medium transition active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 dark:bg-[#222222] dark:hover:bg-[#2c2c2c] dark:border dark:border-[#303030] text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-medium transition active:scale-95 cursor-pointer"
                   >
                     <Eye className="h-3.5 w-3.5" />
                     <span>Preview</span>
@@ -505,7 +505,7 @@ export default function HistoryPage() {
                     disabled={isDownloadingDocxId === record.id}
                     type="button"
                     title="Download DOCX"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303033] hover:border-neutral-400 dark:hover:border-neutral-500 bg-transparent text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-medium transition active:scale-95 disabled:opacity-50 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303030] hover:border-neutral-400 dark:hover:border-[#444444] bg-transparent dark:hover:bg-[#222222] text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-medium transition active:scale-95 disabled:opacity-50 cursor-pointer"
                   >
                     {isDownloadingDocxId === record.id ? (
                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -521,7 +521,7 @@ export default function HistoryPage() {
                     disabled={isDownloadingPdfId === record.id}
                     type="button"
                     title="Download PDF"
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-[#3B5BDB] dark:bg-[#5C7CFA] text-white dark:text-[#0D0F12] hover:bg-[#364FC7] dark:hover:bg-[#748FFC] px-3 py-1.5 text-xs font-medium transition active:scale-95 disabled:opacity-50 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-[#3B5BDB] hover:bg-[#364FC7] text-white px-3 py-1.5 text-xs font-medium transition active:scale-95 disabled:opacity-50 cursor-pointer"
                   >
                     {isDownloadingPdfId === record.id ? (
                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -536,7 +536,7 @@ export default function HistoryPage() {
                     onClick={() => handleOpenInEditor(record)}
                     type="button"
                     title="Edit in Workspace"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303033] hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-medium transition active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303030] hover:bg-neutral-100 dark:hover:bg-[#222222] text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-medium transition active:scale-95 cursor-pointer"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
                     <span>Edit</span>
@@ -574,7 +574,7 @@ export default function HistoryPage() {
               initial={{ opacity: 0, scale: 0.96, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 10 }}
-              className="relative z-10 w-full max-w-sm rounded-2xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-6 shadow-2xl text-[#171717] dark:text-[#F4F4F5]"
+              className="relative z-10 w-full max-w-sm rounded-2xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] p-6 shadow-2xl text-[#171717] dark:text-[#F4F4F5]"
             >
               <h3 className="font-heading text-base font-bold mb-2">Clear Record History?</h3>
               <p className="text-xs text-[#737373] dark:text-[#A1A1AA] mb-6 leading-relaxed">
@@ -585,7 +585,7 @@ export default function HistoryPage() {
                 <button
                   onClick={() => setShowClearConfirm(false)}
                   type="button"
-                  className="px-3.5 py-2 rounded-lg text-xs font-medium text-[#737373] dark:text-[#A1A1AA] hover:bg-neutral-100 dark:hover:bg-neutral-800 transition cursor-pointer"
+                  className="px-3.5 py-2 rounded-lg text-xs font-medium text-[#737373] dark:text-[#A1A1AA] hover:bg-neutral-100 dark:hover:bg-[#222222] dark:hover:text-[#F4F4F5] transition cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -621,11 +621,11 @@ export default function HistoryPage() {
               initial={{ opacity: 0, scale: 0.96, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 10 }}
-              className="relative z-10 w-full max-w-md rounded-2xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-6 shadow-2xl text-[#171717] dark:text-[#F4F4F5]"
+              className="relative z-10 w-full max-w-md rounded-2xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] p-6 shadow-2xl text-[#171717] dark:text-[#F4F4F5]"
             >
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#E5E5E5] dark:border-[#303033]">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#E5E5E5] dark:border-[#303030]">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-100 dark:bg-neutral-800 text-[#171717] dark:text-[#F4F4F5]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-100 dark:bg-[#222222] text-[#171717] dark:text-[#F4F4F5]">
                     <Download className="h-4 w-4" />
                   </div>
                   <h3 className="font-heading text-base font-bold tracking-tight">PDF Export Options</h3>
@@ -636,7 +636,7 @@ export default function HistoryPage() {
                     setPendingPdfRecord(null);
                   }}
                   type="button"
-                  className="rounded-lg p-1 text-[#737373] hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-[#171717] dark:hover:text-[#F4F4F5] transition cursor-pointer"
+                  className="rounded-lg p-1 text-[#737373] hover:bg-neutral-100 dark:hover:bg-[#222222] hover:text-[#171717] dark:hover:text-[#F4F4F5] transition cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -650,7 +650,7 @@ export default function HistoryPage() {
                 <button
                   onClick={() => handleBonafideChoice(true)}
                   type="button"
-                  className="w-full py-2.5 px-4 rounded-lg font-medium text-xs sm:text-sm bg-[#171717] text-white hover:bg-neutral-800 dark:bg-[#F4F4F5] dark:text-[#171717] dark:hover:bg-neutral-200 transition flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="w-full py-2.5 px-4 rounded-lg font-medium text-xs sm:text-sm bg-[#171717] text-white hover:bg-neutral-800 dark:bg-[#3B5BDB] dark:text-white dark:hover:bg-[#364FC7] transition flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
                   <span>Download with Bonafide</span>
                 </button>
@@ -658,19 +658,19 @@ export default function HistoryPage() {
                 <button
                   onClick={() => handleBonafideChoice(false)}
                   type="button"
-                  className="w-full py-2.5 px-4 rounded-lg font-medium text-xs sm:text-sm transition border border-[#E5E5E5] dark:border-[#303033] bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[#171717] dark:text-[#F4F4F5] flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="w-full py-2.5 px-4 rounded-lg font-medium text-xs sm:text-sm transition border border-[#E5E5E5] dark:border-[#303030] bg-transparent hover:bg-neutral-100 dark:bg-[#141414] dark:hover:bg-[#222222] text-[#171717] dark:text-[#F4F4F5] flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
                   <span>Download without Bonafide</span>
                 </button>
               </div>
 
-              <div className="flex items-center gap-2.5 border-t border-[#E5E5E5] dark:border-[#303033] pt-4">
+              <div className="flex items-center gap-2.5 border-t border-[#E5E5E5] dark:border-[#303030] pt-4">
                 <input
                   type="checkbox"
                   id="rememberHistoryChoice"
                   checked={rememberBonafideChoice}
                   onChange={(e) => setRememberBonafideChoice(e.target.checked)}
-                  className="h-4 w-4 rounded border-[#E5E5E5] dark:border-[#303033] text-[#171717] dark:text-[#F4F4F5] focus:ring-0 cursor-pointer"
+                  className="h-4 w-4 rounded border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] text-[#3B5BDB] dark:text-[#3B5BDB] focus:ring-[#3B5BDB] cursor-pointer"
                 />
                 <label
                   htmlFor="rememberHistoryChoice"
