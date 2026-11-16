@@ -78,7 +78,7 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#E5E5E5] dark:border-[#303033] bg-[#FAFAFA]/90 dark:bg-[#0E0E0F]/90 backdrop-blur-md transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full border-b border-[#E5E5E5] dark:border-[#303030] bg-[#FAFAFA]/90 dark:bg-[#0E0E0F]/90 backdrop-blur-md transition-colors duration-200">
       <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4 sm:px-6">
         {/* Left: Brand & Tab Navigation */}
         <div className="flex items-center gap-6 sm:gap-8">
@@ -153,7 +153,7 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
             onClick={() => toggleTheme()}
             title={isDark ? 'Switch to Light mode' : 'Switch to Dark mode'}
             aria-label="Toggle theme"
-            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B5BDB]/40 flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition active:scale-95 cursor-pointer"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B5BDB]/40 flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] dark:hover:bg-[#222222] transition active:scale-95 cursor-pointer"
           >
             {isDark ? (
               <Sun className="h-4 w-4" />
@@ -167,7 +167,7 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
             onClick={handleToggleMute}
             title={muted ? 'Unmute UI sound' : 'Mute UI sound'}
             aria-label={muted ? 'Unmute UI sound' : 'Mute UI sound'}
-            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B5BDB]/40 flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition active:scale-95 cursor-pointer"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B5BDB]/40 flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] dark:hover:bg-[#222222] transition active:scale-95 cursor-pointer"
           >
             {muted ? (
               <VolumeX className="h-4 w-4 text-[#737373] dark:text-[#A1A1AA]" />
@@ -183,12 +183,12 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
             <div className="relative" ref={profileMenuRef}>
               <button
                 onClick={() => setIsProfileOpen((prev) => !prev)}
-                className="flex h-8 items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] px-2 text-xs text-[#171717] dark:text-[#F4F4F5] transition hover:border-neutral-400 dark:hover:border-neutral-600 active:scale-95 cursor-pointer select-none"
+                className="flex h-8 items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] px-2 text-xs text-[#171717] dark:text-[#F4F4F5] transition hover:border-neutral-400 dark:hover:border-[#444444] dark:hover:bg-[#222222] active:scale-95 cursor-pointer select-none"
                 aria-expanded={isProfileOpen}
                 aria-haspopup="true"
                 title={user.displayName || user.email || 'User Account'}
               >
-                <div className="flex h-5 w-5 items-center justify-center overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-700 text-[10px] font-bold text-[#171717] dark:text-[#F4F4F5]">
+                <div className="flex h-5 w-5 items-center justify-center overflow-hidden rounded-full bg-neutral-200 dark:bg-[#222222] text-[10px] font-bold text-[#171717] dark:text-[#F4F4F5]">
                   {user.photoURL ? (
                     <img
                       src={user.photoURL}
@@ -212,8 +212,8 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
 
               {/* Profile Dropdown Menu */}
               {isProfileOpen && (
-                <div className="absolute right-0 mt-2 w-60 origin-top-right rounded-xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-1.5 shadow-xl backdrop-blur-md z-50 animate-in fade-in zoom-in-95 duration-100">
-                  <div className="px-3 py-2 border-b border-[#E5E5E5] dark:border-[#303033] mb-1">
+                <div className="absolute right-0 mt-2 w-60 origin-top-right rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] p-1.5 shadow-xl backdrop-blur-md z-50 animate-in fade-in zoom-in-95 duration-100">
+                  <div className="px-3 py-2 border-b border-[#E5E5E5] dark:border-[#303030] mb-1">
                     <p className="text-xs font-semibold text-[#171717] dark:text-[#F4F4F5] truncate">
                       {user.displayName || 'Student'}
                     </p>
@@ -228,7 +228,7 @@ export default function Header({ check = true }: { check?: boolean } = {}) {
                       signOutUser();
                     }}
                     type="button"
-                    className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition active:scale-98 cursor-pointer"
+                    className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-neutral-100 dark:hover:bg-[#222222] transition active:scale-98 cursor-pointer"
                   >
                     <LogOut className="h-3.5 w-3.5" />
                     <span>Sign Out</span>
