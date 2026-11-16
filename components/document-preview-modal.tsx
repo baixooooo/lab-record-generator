@@ -173,15 +173,15 @@ export default function DocumentPreviewModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 12 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 flex flex-col w-full h-full sm:h-[92vh] max-w-5xl rounded-2xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#171717] dark:text-[#F4F4F5] shadow-2xl overflow-hidden"
+            className="relative z-10 flex flex-col w-full h-full sm:h-[92vh] max-w-5xl rounded-2xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] text-[#171717] dark:text-[#F4F4F5] shadow-2xl overflow-hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Document Preview"
           >
             {/* Sticky Header Toolbar */}
-            <div className="flex items-center justify-between px-5 sm:px-7 py-3.5 border-b border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] text-[#171717] dark:text-[#F4F4F5] shrink-0">
+            <div className="flex items-center justify-between px-5 sm:px-7 py-3.5 border-b border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] text-[#171717] dark:text-[#F4F4F5] shrink-0">
               <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-neutral-100 dark:bg-neutral-800 text-[#171717] dark:text-[#F4F4F5]">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303030] bg-neutral-100 dark:bg-[#222222] text-[#171717] dark:text-[#F4F4F5]">
                   <FileText className="h-4.5 w-4.5" />
                 </div>
                 <div>
@@ -189,7 +189,7 @@ export default function DocumentPreviewModal({
                     <h2 className="font-heading text-sm sm:text-base font-bold tracking-tight text-[#171717] dark:text-[#F4F4F5]">
                       Document Preview
                     </h2>
-                    <span className="hidden sm:inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold border border-[#E5E5E5] dark:border-[#303033] bg-neutral-100 dark:bg-neutral-800 text-[#737373] dark:text-[#A1A1AA]">
+                    <span className="hidden sm:inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold border border-[#E5E5E5] dark:border-[#303030] bg-neutral-100 dark:bg-[#222222] text-[#737373] dark:text-[#A1A1AA]">
                       <CheckCircle2 className="h-3 w-3" />
                       SEC Format Verified
                     </span>
@@ -207,7 +207,7 @@ export default function DocumentPreviewModal({
                   disabled={isPrinting}
                   type="button"
                   title="Print PDF Document"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-semibold shadow-2xs transition active:scale-95 disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#303030] bg-neutral-100 hover:bg-neutral-200 dark:bg-[#222222] dark:hover:bg-[#2c2c2c] text-[#171717] dark:text-[#F4F4F5] px-3 py-1.5 text-xs font-semibold shadow-2xs transition active:scale-95 disabled:opacity-50 cursor-pointer"
                 >
                   {isPrinting ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -220,7 +220,7 @@ export default function DocumentPreviewModal({
                 <button
                   onClick={onClose}
                   type="button"
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303033] bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition active:scale-95 cursor-pointer"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] dark:border-[#303030] bg-transparent hover:bg-neutral-100 dark:hover:bg-[#222222] text-[#737373] hover:text-[#171717] dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition active:scale-95 cursor-pointer"
                   aria-label="Close modal"
                 >
                   <X className="h-4 w-4" />
