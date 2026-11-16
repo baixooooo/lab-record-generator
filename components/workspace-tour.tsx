@@ -290,11 +290,11 @@ export default function WorkspaceTour() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="relative z-50 w-full max-w-md pointer-events-auto rounded-2xl border border-[#E5E5E5] dark:border-[#303033] bg-[#FFFFFF] dark:bg-[#19191B] p-5 sm:p-6 text-[#171717] dark:text-[#F4F4F5] shadow-2xl backdrop-blur-md"
+            className="relative z-50 w-full max-w-md pointer-events-auto rounded-2xl border border-[#E5E5E5] dark:border-[#303030] bg-[#FFFFFF] dark:bg-[#191919] p-5 sm:p-6 text-[#171717] dark:text-[#F4F4F5] shadow-2xl backdrop-blur-md"
           >
             {/* Top Bar */}
             <div className="flex items-center justify-between gap-3 mb-4">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-[#E5E5E5] dark:border-[#303033] px-2.5 py-1 text-[11px] font-bold text-[#171717] dark:text-[#F4F4F5]">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#303030] px-2.5 py-1 text-[11px] font-bold text-[#171717] dark:text-[#F4F4F5]">
                 <Sparkles className="h-3 w-3" />
                 <span>
                   Step {currentStep + 1} of {TOUR_STEPS.length}
@@ -304,7 +304,7 @@ export default function WorkspaceTour() {
               <button
                 onClick={handleFinishTour}
                 type="button"
-                className="rounded-full p-1 text-[#737373] hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-[#171717] dark:hover:text-[#F4F4F5] transition cursor-pointer"
+                className="rounded-full p-1 text-[#737373] hover:bg-neutral-100 dark:hover:bg-[#222222] hover:text-[#171717] dark:hover:text-[#F4F4F5] transition cursor-pointer"
                 title="Close tour"
               >
                 <X className="h-4 w-4" />
@@ -313,7 +313,7 @@ export default function WorkspaceTour() {
 
             {/* Step Body */}
             <div className="flex items-start gap-3.5 mb-5">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-[#E5E5E5] dark:border-[#303033]">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neutral-100 dark:bg-[#222222] border border-[#E5E5E5] dark:border-[#303030]">
                 {currentTour.icon}
               </div>
               <div className="min-w-0">
@@ -327,7 +327,7 @@ export default function WorkspaceTour() {
             </div>
 
             {/* Footer Navigation */}
-            <div className="flex items-center justify-between border-t border-[#E5E5E5] dark:border-[#303033] pt-3.5">
+            <div className="flex items-center justify-between border-t border-[#E5E5E5] dark:border-[#303030] pt-3.5">
               {/* Progress dots */}
               <div className="flex items-center gap-1.5">
                 {TOUR_STEPS.map((_, idx) => (
@@ -347,7 +347,7 @@ export default function WorkspaceTour() {
                 <button
                   onClick={handleFinishTour}
                   type="button"
-                  className="px-2.5 py-1.5 text-xs font-semibold text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition cursor-pointer"
+                  className="px-2.5 py-1.5 text-xs font-semibold text-neutral-500 hover:text-neutral-800 dark:text-[#A1A1AA] dark:hover:text-[#F4F4F5] transition cursor-pointer"
                 >
                   Skip
                 </button>
@@ -356,7 +356,7 @@ export default function WorkspaceTour() {
                   <button
                     onClick={handlePrev}
                     type="button"
-                    className="inline-flex items-center gap-1 rounded-xl border border-neutral-200/90 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 transition hover:bg-neutral-100 dark:hover:bg-neutral-750 active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-1 rounded-xl border border-neutral-200/90 dark:border-[#303030] bg-neutral-50 dark:bg-[#222222] px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-[#F4F4F5] transition hover:bg-neutral-100 dark:hover:bg-[#2c2c2c] active:scale-95 cursor-pointer"
                   >
                     <ArrowLeft className="h-3.5 w-3.5" />
                     <span>Back</span>
