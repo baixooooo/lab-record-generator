@@ -131,9 +131,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Accessible, consistent focus styles for keyboard navigation. */
-:where(button, a, input, textarea, select):focus-visible {
+:where(button, a, input[type='checkbox'], input[type='radio']):focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+:where(input:not([type='checkbox']):not([type='radio']), textarea, select):focus-visible {
+  outline: none;
 }
 
 ::selection {
@@ -239,9 +242,9 @@ body.dark:has(.labora-header) {
 .labora-dashboard .labora-panel h2, .labora-dashboard h1 { color: var(--text-primary); }
 .labora-dashboard .labora-panel p { color: var(--text-secondary); }
 .labora-dashboard label { color: var(--text-secondary); font-weight: 600; }
-.labora-dashboard .labora-input { background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color); box-shadow: none; }
+.labora-dashboard .labora-input { background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color); box-shadow: none; transition: border-color 150ms ease; }
 .labora-dashboard .labora-input::placeholder { color: var(--text-muted); }
-.labora-dashboard .labora-input:focus { outline: none; border-color: var(--text-secondary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--text-primary) 8%, transparent); }
+.labora-dashboard .labora-input:focus { outline: none; border-color: #3B5BDB; box-shadow: none; }
 .labora-dashboard .labora-primary { background: var(--primary); border: 1px solid var(--primary); color: var(--primary-fg); border-radius: 10px; }
 .labora-dashboard .labora-primary:hover:not(:disabled) { background: var(--primary-hover); }
 .labora-dashboard #tour-add-btn { background: var(--bg-surface); color: var(--text-secondary); border-color: var(--border-color); }
@@ -256,13 +259,15 @@ body.dark:has(.labora-header) {
 .dark .labora-dashboard #tour-action-bar button:hover:not(:disabled) { filter: none; }
 .labora-dashboard #tour-action-bar button:disabled { opacity: .43; cursor: not-allowed; }
 .labora-dashboard .labora-dialog { background: var(--bg-surface); border-color: var(--border-color); color: var(--text-primary); }
-.labora-dashboard :focus-visible, .labora-header :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.labora-header :focus-visible,
+.labora-dashboard button:focus-visible,
+.labora-dashboard a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 
 /* Dark mode overrides for dashboard surfaces & inputs */
 .dark .labora-dashboard .labora-panel { background: #191919; border-color: #303030; }
 .dark .labora-dashboard .labora-input { background: #141414; border-color: #303030; color: #F4F4F5; }
 .dark .labora-dashboard .labora-input::placeholder { color: #71717A; }
-.dark .labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: #3B5BDB; box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.2); }
+.dark .labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: #3B5BDB; box-shadow: none; outline: none; }
 .dark .labora-dashboard #tour-add-btn { background: #191919; border-color: #303030; color: #A1A1AA; }
 .dark .labora-dashboard #tour-add-btn:hover { background: #222222; border-color: #3B5BDB; color: #F4F4F5; }
 .dark .labora-dashboard #tour-action-bar { background: rgba(25, 25, 25, 0.95); border-color: #303030; }
@@ -277,9 +282,9 @@ body.dark:has(.labora-header) {
 /* History page */
 .labora-history { background: var(--bg-page); color: var(--text-primary); font-family: var(--font-inter); }
 .labora-history .history-card { background: var(--bg-surface); border: 1px solid var(--border-color); }
-.labora-history .history-field { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-primary); }
+.labora-history .history-field { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-primary); transition: border-color 150ms ease; }
 .labora-history .history-field::placeholder { color: var(--text-muted); }
-.labora-history .history-field:focus { outline: none; border-color: var(--text-secondary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--text-primary) 7%, transparent); }
+.labora-history .history-field:focus { outline: none; border-color: #3B5BDB; box-shadow: none; }
 .labora-history .history-button { background: var(--bg-subtle); border: 1px solid var(--border-color); color: var(--text-primary); }
 .labora-history .history-button:hover { background: var(--border-color); }
 .labora-history .history-primary { background: var(--primary); color: var(--primary-fg); }
@@ -291,7 +296,7 @@ body.dark:has(.labora-header) {
 .dark .labora-history .history-card { background: #191919; border-color: #303030; }
 .dark .labora-history .history-field { background: #141414; border-color: #303030; color: #F4F4F5; }
 .dark .labora-history .history-field::placeholder { color: #A1A1AA; }
-.dark .labora-history .history-field:focus { border-color: #3B5BDB; box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.2); }
+.dark .labora-history .history-field:focus { border-color: #3B5BDB; box-shadow: none; outline: none; }
 .dark .labora-history .history-button { background: #222222; border-color: #303030; color: #F4F4F5; }
 .dark .labora-history .history-button:hover { background: #2c2c2c; }
 .dark .labora-history .history-primary { background: #3B5BDB; color: #FFFFFF; }
@@ -299,7 +304,9 @@ body.dark:has(.labora-header) {
 .dark .labora-history .history-subtle { color: #A1A1AA; }
 
 /* Editor validation: invalid fields only, never the whole experiment card. */
-.labora-dashboard .labora-input[aria-invalid="true"] { border-color: #e05260; box-shadow: 0 0 0 3px rgba(224,82,96,.12); }
-.dark .labora-dashboard .labora-input[aria-invalid="true"] { border-color: #fb7185; box-shadow: 0 0 0 3px rgba(251,113,133,.13); }
-.labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
-.dark .labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: #3B5BDB; box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.2); }
+.labora-dashboard .labora-input[aria-invalid="true"] { border-color: #e05260; box-shadow: none; }
+.dark .labora-dashboard .labora-input[aria-invalid="true"] { border-color: #fb7185; box-shadow: none; }
+.labora-dashboard .labora-input[aria-invalid="true"]:focus { border-color: #e05260 !important; outline: none; }
+.dark .labora-dashboard .labora-input[aria-invalid="true"]:focus { border-color: #fb7185 !important; outline: none; }
+.labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: #3B5BDB; box-shadow: none; outline: none; }
+.dark .labora-dashboard .labora-input:focus:not([aria-invalid="true"]) { border-color: #3B5BDB; box-shadow: none; outline: none; }
