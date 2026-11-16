@@ -270,7 +270,7 @@ export default function LoginPage() {
                   {mode === 'signup' && (
                     <div>
                       <label htmlFor="auth-name" className="mb-2 block text-[13px] font-medium text-[#4b515c]">Full name</label>
-                      <input id="auth-name" autoComplete="name" type="text" required value={name} onChange={(e) => setName(e.target.value)} disabled={isSubmitting} placeholder="e.g. Alex Morgan" className="h-11 w-full rounded-[10px] border border-[#e2e4e9] bg-white px-3.5 text-sm outline-none transition focus:border-[#3B5BDB] focus:ring-[3px] focus:ring-[#3B5BDB]/10 disabled:opacity-60" />
+                      <input id="auth-name" autoComplete="name" type="text" required value={name} onChange={(e) => setName(e.target.value)} disabled={isSubmitting} placeholder="e.g. Alex Morgan" className="h-11 w-full rounded-[10px] border border-[#E5E5E5] bg-white px-3.5 text-sm outline-none focus:outline-none focus:border-[#3B5BDB] focus:ring-0 transition-colors duration-150 disabled:opacity-60" />
                     </div>
                   )}
                   <div>
@@ -290,10 +290,10 @@ export default function LoginPage() {
                       disabled={isSubmitting}
                       placeholder="name@example.com"
                       required
-                      className={`h-11 w-full rounded-[10px] border bg-white px-3.5 text-sm outline-none transition placeholder:text-[#a3a7af] disabled:opacity-60 ${
+                      className={`h-11 w-full rounded-[10px] border bg-white px-3.5 text-sm outline-none focus:outline-none focus:ring-0 transition-colors duration-150 placeholder:text-[#a3a7af] disabled:opacity-60 ${
                         isEmailError
-                          ? 'border-rose-400 focus:border-rose-500 focus:ring-[3px] focus:ring-rose-500/10'
-                          : 'border-[#e2e4e9] focus:border-[#3B5BDB] focus:ring-[3px] focus:ring-[#3B5BDB]/10'
+                          ? 'border-rose-400 focus:border-rose-500'
+                          : 'border-[#E5E5E5] focus:border-[#3B5BDB]'
                       }`}
                     />
                   </div>
@@ -304,7 +304,7 @@ export default function LoginPage() {
                         {mode === 'signin' && <button type="button" onClick={() => handleTabSwitch('forgot')} className="text-xs font-medium text-[#3B5BDB] hover:text-[#364FC7]">Forgot password?</button>}
                       </div>
                       <div className="relative">
-                        <input id="auth-password" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} disabled={isSubmitting} placeholder={mode === 'signup' ? 'At least 6 characters' : 'Enter your password'} required className="h-11 w-full rounded-[10px] border border-[#e2e4e9] bg-white px-3.5 pr-11 text-sm outline-none transition placeholder:text-[#a3a7af] focus:border-[#3B5BDB] focus:ring-[3px] focus:ring-[#3B5BDB]/10 disabled:opacity-60" />
+                        <input id="auth-password" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} disabled={isSubmitting} placeholder={mode === 'signup' ? 'At least 6 characters' : 'Enter your password'} required className="h-11 w-full rounded-[10px] border border-[#E5E5E5] bg-white px-3.5 pr-11 text-sm outline-none focus:outline-none focus:border-[#3B5BDB] focus:ring-0 transition-colors duration-150 placeholder:text-[#a3a7af] disabled:opacity-60" />
                         <button type="button" onClick={() => setShowPassword((prev) => !prev)} aria-label={showPassword ? 'Hide password' : 'Show password'} className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-[#838893] hover:text-[#262a32]">
                           {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </button>
@@ -314,7 +314,7 @@ export default function LoginPage() {
                   {mode === 'signup' && (
                     <div>
                       <label htmlFor="auth-confirm" className="mb-2 block text-[13px] font-medium text-[#4b515c]">Confirm password</label>
-                      <input id="auth-confirm" autoComplete="new-password" type={showPassword ? 'text' : 'password'} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} disabled={isSubmitting} placeholder="Re-enter your password" required className="h-11 w-full rounded-[10px] border border-[#e2e4e9] bg-white px-3.5 text-sm outline-none transition placeholder:text-[#a3a7af] focus:border-[#3B5BDB] focus:ring-[3px] focus:ring-[#3B5BDB]/10 disabled:opacity-60" />
+                      <input id="auth-confirm" autoComplete="new-password" type={showPassword ? 'text' : 'password'} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} disabled={isSubmitting} placeholder="Re-enter your password" required className="h-11 w-full rounded-[10px] border border-[#E5E5E5] bg-white px-3.5 text-sm outline-none focus:outline-none focus:border-[#3B5BDB] focus:ring-0 transition-colors duration-150 placeholder:text-[#a3a7af] disabled:opacity-60" />
                     </div>
                   )}
 
