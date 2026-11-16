@@ -673,7 +673,7 @@ export default function DashboardPage() {
                 value={courseTitle}
                 onChange={(e) => { setCourseTitle(e.target.value); clearInvalid("courseTitle"); }}
                 placeholder="e.g., 19AI410 - Machine Learning Laboratory"
-                className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-2 aria-invalid:ring-rose-500/15 w-full rounded-xl border border-neutral-200 dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-all focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:outline-none focus:ring-2 focus:ring-[#3B5BDB]/20 shadow-2xs"
+                className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
               />
             </div>
 
@@ -691,7 +691,7 @@ export default function DashboardPage() {
                   value={studentName}
                   onChange={(e) => { setStudentName(e.target.value); clearInvalid("studentName"); }}
                   placeholder="e.g., John Doe"
-                  className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-2 aria-invalid:ring-rose-500/15 w-full rounded-xl border border-neutral-200 dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-all focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:outline-none focus:ring-2 focus:ring-[#3B5BDB]/20 shadow-2xs"
+                  className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
                 />
               </div>
 
@@ -712,7 +712,7 @@ export default function DashboardPage() {
                   onChange={handleRegisterNumberChange}
                   placeholder="e.g., 211419104001"
                   maxLength={12}
-                  className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-2 aria-invalid:ring-rose-500/15 w-full rounded-xl border border-neutral-200 dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm labora-mono text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] tracking-wider transition-all focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:outline-none focus:ring-2 focus:ring-[#3B5BDB]/20 shadow-2xs"
+                  className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm labora-mono text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] tracking-wider transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
                 />
               </div>
             </div>
@@ -723,10 +723,10 @@ export default function DashboardPage() {
         <div className="space-y-3">
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-2">
-              <h2 className="labora-heading text-sm sm:text-base font-bold tracking-tight text-neutral-950 dark:text-white">
+              <h2 className="labora-heading text-sm sm:text-base font-bold tracking-tight text-neutral-950 dark:text-[#F4F4F5]">
                 Experiments
               </h2>
-              <span className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 text-[11px] font-bold text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700">
+              <span className="rounded-full bg-neutral-100 dark:bg-[#141414] px-2 py-0.5 text-[11px] font-bold text-neutral-600 dark:text-[#A1A1AA] border border-neutral-200/80 dark:border-[#303030]">
                 {experiments.length} {experiments.length === 1 ? 'entry' : 'entries'}
               </span>
             </div>
@@ -749,15 +749,15 @@ export default function DashboardPage() {
                   exit={{ opacity: 0, y: -12, scale: 0.985 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 30, mass: 0.8 }}
                   id={index === 0 ? 'tour-exp-card-0' : `experiment-${exp.id}`}
-                  className="labora-panel rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-[var(--bg-surface)] p-4 sm:p-5 shadow-[0_3px_16px_rgba(15,23,42,0.025)] hover:border-[var(--border-color)] dark:hover:border-neutral-700"
+                  className="labora-panel rounded-2xl border border-neutral-200/90 dark:border-[#303030] bg-white dark:bg-[#191919] p-4 sm:p-5 shadow-[0_3px_16px_rgba(15,23,42,0.025)] hover:border-[var(--border-color)] dark:hover:border-[#444444]"
                 >
-                  <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-neutral-100 dark:border-neutral-800/80">
+                  <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-neutral-100 dark:border-[#303030]">
                     <div className="flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold labora-mono text-neutral-900 dark:text-white bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700">
-                        {expNumberFormatted} <span className="font-sans font-semibold text-neutral-500 dark:text-neutral-400">/ Experiment</span>
+                      <span className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold labora-mono text-neutral-900 dark:text-[#F4F4F5] bg-neutral-100 dark:bg-[#141414] border border-neutral-200/80 dark:border-[#303030]">
+                        {expNumberFormatted} <span className="font-sans font-semibold text-neutral-500 dark:text-[#A1A1AA]">/ Experiment</span>
                       </span>
                       {exp.title.trim() && hasValidLink && (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[var(--text-secondary)] dark:text-[#A1A1AA]">
                           <CheckCircle2 className="h-3 w-3" />
                           Ready
                         </span>
@@ -771,8 +771,8 @@ export default function DashboardPage() {
                       title={isOnlyOne ? 'At least one experiment is required' : 'Delete experiment'}
                       className={`flex h-8 w-8 items-center justify-center rounded-xl transition ${
                         isOnlyOne
-                          ? 'cursor-not-allowed opacity-30 text-neutral-400'
-                          : 'text-neutral-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 hover:text-rose-600 dark:hover:text-rose-400 cursor-pointer active:scale-95'
+                          ? 'cursor-not-allowed opacity-30 text-neutral-400 dark:text-neutral-600'
+                          : 'text-neutral-400 dark:text-[#A1A1AA] hover:bg-rose-50 dark:hover:bg-rose-950/40 hover:text-rose-600 dark:hover:text-rose-400 cursor-pointer active:scale-95'
                       }`}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -781,7 +781,7 @@ export default function DashboardPage() {
 
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-[11px] font-bold text-neutral-600 dark:text-neutral-300 uppercase tracking-wider mb-1.5">
+                      <label className="block text-[11px] font-bold text-neutral-600 dark:text-[#A1A1AA] uppercase tracking-wider mb-1.5">
                         Experiment Title <span className="text-[var(--text-muted)]">*</span>
                       </label>
                       <motion.input
@@ -793,26 +793,26 @@ export default function DashboardPage() {
                         value={exp.title}
                         onChange={(e) => handleUpdateExperiment(index, 'title', e.target.value)}
                         placeholder="e.g., Implementation of Decision Tree Classification Algorithm"
-                        className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-2 aria-invalid:ring-rose-500/15 w-full rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 transition-all focus:border-[var(--primary)] dark:focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-soft)] shadow-2xs"
+                        className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] font-bold text-neutral-600 dark:text-neutral-300 uppercase tracking-wider mb-1.5">
+                        <label className="block text-[11px] font-bold text-neutral-600 dark:text-[#A1A1AA] uppercase tracking-wider mb-1.5">
                           Date (Optional)
                         </label>
                         <input
                           type="date"
                           value={exp.date || ''}
                           onChange={(e) => handleUpdateExperiment(index, 'date', e.target.value)}
-                          className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-2 aria-invalid:ring-rose-500/15 w-full rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 px-3.5 py-2 text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 transition-all focus:border-[var(--primary)] dark:focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-soft)] shadow-2xs"
+                          className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
                         />
                       </div>
 
                       <div>
                         <div className="flex items-center justify-between mb-1.5">
-                          <label className="text-[11px] font-bold text-neutral-600 dark:text-neutral-300 uppercase tracking-wider">
+                          <label className="text-[11px] font-bold text-neutral-600 dark:text-[#A1A1AA] uppercase tracking-wider">
                             GitHub Link <span className="text-[var(--text-muted)]">*</span>
                           </label>
                           {hasValidLink && (
@@ -820,7 +820,7 @@ export default function DashboardPage() {
                               href={exp.githubUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--text-secondary)] dark:text-[var(--text-secondary)] hover:underline"
+                              className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--text-secondary)] dark:text-[#A1A1AA] hover:text-[#F4F4F5] hover:underline"
                             >
                               <span>Test Link</span>
                               <ExternalLink className="h-2.5 w-2.5" />
@@ -838,7 +838,7 @@ export default function DashboardPage() {
                             handleUpdateExperiment(index, 'githubUrl', e.target.value)
                           }
                           placeholder="https://github.com/username/repository"
-                          className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-2 aria-invalid:ring-rose-500/15 w-full rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 transition-all focus:border-[var(--primary)] dark:focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-soft)] shadow-2xs"
+                          className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
                         />
                       </div>
                     </div>
@@ -856,7 +856,7 @@ export default function DashboardPage() {
             id="tour-add-btn"
             onClick={() => handleAddExperiment()}
             type="button"
-            className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] py-3 text-xs sm:text-sm font-semibold text-neutral-600 dark:text-neutral-300 hover:border-[var(--primary)] dark:hover:border-[var(--primary)] hover:bg-[var(--primary-soft)] dark:hover:bg-[var(--primary-soft)] transition-all active:scale-[0.99] cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[var(--border-color)] dark:border-[#303030] bg-[var(--bg-subtle)] dark:bg-[#191919] py-3 text-xs sm:text-sm font-semibold text-neutral-600 dark:text-[#A1A1AA] hover:border-[#3B5BDB] dark:hover:border-[#3B5BDB] hover:bg-[var(--primary-soft)] dark:hover:bg-[#222222] dark:hover:text-[#F4F4F5] transition-all active:scale-[0.99] cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             <span>Add experiment</span>
@@ -865,7 +865,7 @@ export default function DashboardPage() {
           {/* Action Dock */}
           <div
             id="tour-action-bar"
-            className="labora-panel w-full rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/95 dark:bg-[var(--bg-surface)]/95 p-3 sm:p-4 shadow-[0_5px_22px_rgba(15,23,42,0.035)] backdrop-blur-lg"
+            className="labora-panel w-full rounded-2xl border border-neutral-200/90 dark:border-[#303030] bg-white/95 dark:bg-[#191919]/95 p-3 sm:p-4 shadow-[0_5px_22px_rgba(15,23,42,0.035)] backdrop-blur-lg"
           >
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
               {/* Preview Button */}
@@ -875,7 +875,7 @@ export default function DashboardPage() {
                 title="Preview document"
                 className={`labora-export-preview inline-flex h-11 items-center justify-center gap-2 rounded-xl border px-4 text-xs sm:text-sm font-semibold shadow-2xs transition-all active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer ${
                   isDark
-                    ? 'border-neutral-700 bg-neutral-800 text-neutral-100 hover:bg-neutral-700'
+                    ? 'border-[#303030] bg-[#222222] text-[#F4F4F5] hover:bg-[#2c2c2c]'
                     : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:bg-neutral-100'
                 }`}
               >
@@ -888,12 +888,12 @@ export default function DashboardPage() {
                 onClick={() => handleDownloadDocx()}
                 disabled={isDocxGenerating || isPdfGenerating}
                 type="button"
-                className="labora-export-docx inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50/80 dark:bg-neutral-800/60 px-4 text-xs sm:text-sm font-semibold text-neutral-700 dark:text-neutral-200 shadow-2xs transition-all hover:bg-neutral-100 dark:hover:bg-neutral-700 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
+                className="labora-export-docx inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-neutral-200 dark:border-[#303030] bg-neutral-50/80 dark:bg-[#222222] px-4 text-xs sm:text-sm font-semibold text-neutral-700 dark:text-[#F4F4F5] shadow-2xs transition-all hover:bg-neutral-100 dark:hover:bg-[#2c2c2c] active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
               >
                 {isDocxGenerating ? (
                   <Loader2 className="h-4 w-4 animate-spin text-neutral-600" />
                 ) : (
-                  <FileText className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                  <FileText className="h-4 w-4 text-neutral-600 dark:text-[#A1A1AA]" />
                 )}
                 <span>Export DOCX</span>
               </button>
@@ -903,7 +903,7 @@ export default function DashboardPage() {
                 onClick={() => handlePdfDownloadClick()}
                 disabled={isPdfGenerating || isDocxGenerating}
                 type="button"
-                className="labora-primary labora-export-pdf col-span-2 sm:col-span-1 inline-flex h-11 items-center justify-center gap-2 rounded-xl px-4 text-xs sm:text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
+                className="labora-primary labora-export-pdf col-span-2 sm:col-span-1 inline-flex h-11 items-center justify-center gap-2 rounded-xl px-4 text-xs sm:text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none cursor-pointer bg-[#3B5BDB] hover:bg-[#364FC7] text-white border-0"
               >
                 {isPdfGenerating ? (
                   <Loader2 className="h-4 w-4 animate-spin text-white dark:text-neutral-950" />
@@ -915,7 +915,7 @@ export default function DashboardPage() {
             </div>
 
             {!isFormValid && (
-              <p className="mt-2 text-center text-[10px] text-neutral-400 dark:text-neutral-500 font-medium">
+              <p className="mt-2 text-center text-[10px] text-neutral-400 dark:text-[#A1A1AA] font-medium">
                 Complete the required fields to enable preview and export.
               </p>
             )}
@@ -940,11 +940,11 @@ export default function DashboardPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="labora-dialog relative z-10 w-full max-w-md rounded-3xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-7 shadow-2xl text-neutral-950 dark:text-white"
+              className="labora-dialog relative z-10 w-full max-w-md rounded-3xl border border-neutral-200/90 dark:border-[#303030] bg-white dark:bg-[#191919] p-6 sm:p-7 shadow-2xl text-neutral-950 dark:text-[#F4F4F5]"
             >
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100 dark:border-neutral-800">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100 dark:border-[#303030]">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-neutral-100 text-[var(--text-secondary)] dark:text-[var(--text-secondary)]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-neutral-100 dark:bg-[#222222] text-[var(--text-secondary)] dark:text-[#A1A1AA]">
                     <Download className="h-4 w-4" />
                   </div>
                   <h3 className="text-base font-bold tracking-tight">PDF Export Options</h3>
@@ -952,13 +952,13 @@ export default function DashboardPage() {
                 <button
                   onClick={() => setShowBonafideModal(false)}
                   type="button"
-                  className="rounded-full p-1 text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-700 dark:hover:text-neutral-200 transition cursor-pointer"
+                  className="rounded-full p-1 text-neutral-400 dark:text-[#A1A1AA] hover:bg-neutral-100 dark:hover:bg-[#222222] hover:text-neutral-700 dark:hover:text-[#F4F4F5] transition cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
               </div>
 
-              <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+              <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-[#A1A1AA] mb-6 leading-relaxed">
                 Choose whether to merge the official college Bonafide Certificate page at the beginning of your Lab Record PDF.
               </p>
 
@@ -966,7 +966,7 @@ export default function DashboardPage() {
                 <button
                   onClick={() => handleBonafideChoice(true)}
                   type="button"
-                  className="labora-primary w-full py-3 px-4 rounded-xl font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-98"
+                  className="labora-primary w-full py-3 px-4 rounded-xl font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-98 bg-[#3B5BDB] hover:bg-[#364FC7] text-white border-0"
                 >
                   <span>Download with Bonafide</span>
                 </button>
@@ -974,23 +974,23 @@ export default function DashboardPage() {
                 <button
                   onClick={() => handleBonafideChoice(false)}
                   type="button"
-                  className="w-full py-3 px-4 rounded-xl font-semibold text-xs sm:text-sm transition border border-neutral-200/90 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-850 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="w-full py-3 px-4 rounded-xl font-semibold text-xs sm:text-sm transition border border-neutral-200/90 dark:border-[#303030] bg-neutral-50 dark:bg-[#141414] hover:bg-neutral-100 dark:hover:bg-[#222222] text-neutral-800 dark:text-[#F4F4F5] flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
                   <span>Download without Bonafide</span>
                 </button>
               </div>
 
-              <div className="flex items-center gap-3 border-t border-neutral-100 dark:border-neutral-800 pt-4">
+              <div className="flex items-center gap-3 border-t border-neutral-100 dark:border-[#303030] pt-4">
                 <input
                   type="checkbox"
                   id="rememberChoice"
                   checked={rememberBonafideChoice}
                   onChange={(e) => setRememberBonafideChoice(e.target.checked)}
-                  className="h-4 w-4 rounded border-neutral-300 text-[var(--text-secondary)] focus:ring-[var(--primary)] cursor-pointer"
+                  className="h-4 w-4 rounded border-neutral-300 dark:border-[#303030] bg-white dark:bg-[#141414] text-[#3B5BDB] dark:text-[#3B5BDB] focus:ring-[#3B5BDB] cursor-pointer"
                 />
                 <label
                   htmlFor="rememberChoice"
-                  className="text-xs select-none cursor-pointer text-neutral-600 dark:text-neutral-400"
+                  className="text-xs select-none cursor-pointer text-neutral-600 dark:text-[#A1A1AA]"
                 >
                   Remember my choice (prompts again after 20 downloads)
                 </label>
