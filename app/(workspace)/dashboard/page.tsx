@@ -46,6 +46,25 @@ export interface SavedRecord {
   updatedAt: string;
 }
 
+// Validate the URL structurally instead of accepting any string starting with "http".
+// Repository URLs and links to files, folders, commits, and issues are supported.
+const isValidGitHubUrl = (value: string): boolean => {
+  try {
+    const url = new URL(value.trim());
+    if (url.protocol !== 'https:' || !['github.com', 'www.github.com'].includes(url.hostname)) return false;
+    if (url.username || url.password || url.port || url.search) return false;
+    const segments = url.pathname.split('/').filter(Boolean);
+    if (segments.length < 2) return false;
+    const [owner, repo] = segments;
+    return /^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,38})$/.test(owner) &&
+      /^[a-zA-Z0-9_.-]+$/.test(repo) && repo !== '.' && repo !== '..';
+  } catch {
+    return false;
+  }
+};
+
+const isValidRegisterNumber = (value: string): boolean => /^[A-Za-z0-9]{12}$/.test(value.trim());
+
 export default function DashboardPage() {
   const { user, loading } = useAuth();
   const { isDark } = useTheme();
@@ -53,19 +72,28 @@ export default function DashboardPage() {
   const invalidMotion = useAnimationControls();
   const reduceMotion = useReducedMotion();
   const [invalidFields, setInvalidFields] = useState<string[]>([]);
+  const [shakingExperiments, setShakingExperiments] = useState<number[]>([]);
   const clearInvalid = (name: string) => setInvalidFields(prev => prev.filter(item => item !== name));
 
   const flagInvalidFields = () => {
     const failures: string[] = [];
     if (!courseTitle.trim()) failures.push('courseTitle');
     if (!studentName.trim()) failures.push('studentName');
-    if (!registerNumber.trim()) failures.push('registerNumber');
+    if (!isValidRegisterNumber(registerNumber)) failures.push('registerNumber');
     experiments.forEach((exp, index) => {
       if (!exp.title.trim()) failures.push(`title-${index}`);
-      if (!exp.githubUrl.trim()) failures.push(`githubUrl-${index}`);
+      if (!isValidGitHubUrl(exp.githubUrl)) failures.push(`githubUrl-${index}`);
     });
     setInvalidFields(failures);
     if (failures.length) {
+      // Restart the card animation even when the user retries without changing a field.
+      setShakingExperiments([]);
+      const cardsToShake = experiments.flatMap((_, i) =>
+        failures.includes(`title-${i}`) || failures.includes(`githubUrl-${i}`) ? [i] : []
+      );
+      if (!reduceMotion && cardsToShake.length) {
+        requestAnimationFrame(() => setShakingExperiments(cardsToShake));
+      }
       // A shared controller animates only inputs whose custom key is invalid.
       void invalidMotion.start((field: string) => failures.includes(field) && !reduceMotion
         ? { x: [0, -5, 5, -3, 3, 0], transition: { duration: 0.30, ease: 'easeInOut' } }
@@ -119,9 +147,9 @@ export default function DashboardPage() {
   const isFormValid = Boolean(
     courseTitle.trim() &&
     studentName.trim() &&
-    registerNumber.trim() &&
+    isValidRegisterNumber(registerNumber) &&
     experiments.length > 0 &&
-    experiments.every((exp) => exp.title.trim() && exp.githubUrl.trim())
+    experiments.every((exp) => exp.title.trim() && isValidGitHubUrl(exp.githubUrl))
   );
 
   // Auth Guard & Firestore Record Loader
@@ -326,6 +354,7 @@ export default function DashboardPage() {
     setRegisterNumber('');
     setExperiments(cleanExperiments);
     setInvalidFields([]);
+    setShakingExperiments([]);
     setNewExperimentId(null);
     setSyncStatus('idle');
     lastSavedPayloadRef.current = '';
@@ -359,6 +388,7 @@ export default function DashboardPage() {
     setExperiments((prev) => [...prev, newExp]);
     setNewExperimentId(newExp.id!);
     setInvalidFields([]);
+    setShakingExperiments([]);
   };
 
   // Reveal the newly created experiment, the Add button and (when space allows)
@@ -405,6 +435,7 @@ export default function DashboardPage() {
   const handleDeleteExperiment = (index: number) => {
     if (experiments.length <= 1) return;
     setInvalidFields([]);
+    setShakingExperiments([]);
     setExperiments((prev) => {
       const filtered = prev.filter((_, idx) => idx !== index);
       return filtered.map((exp, idx) => ({
@@ -554,6 +585,19 @@ export default function DashboardPage() {
   return (
     <div className="flex-1 flex flex-col pb-12">
       <WorkspaceTour />
+      <style>{`
+        @keyframes labora-invalid-experiment {
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-5px); }
+          40% { transform: translateX(5px); }
+          60% { transform: translateX(-3px); }
+          80% { transform: translateX(3px); }
+        }
+        .labora-shake-experiment { animation: labora-invalid-experiment 320ms ease-in-out; }
+        @media (prefers-reduced-motion: reduce) {
+          .labora-shake-experiment { animation: none; }
+        }
+      `}</style>
 
       {/* Floating Toast Notification */}
       <AnimatePresence>
@@ -700,7 +744,7 @@ export default function DashboardPage() {
                   <label className="text-[11px] font-bold text-neutral-600 dark:text-[#A1A1AA] uppercase tracking-wider">
                     Register Number <span className="text-[var(--text-muted)]">*</span>
                   </label>
-                  <span className="labora-mono text-[10px] text-neutral-400 dark:text-[#A1A1AA]">{registerNumber.length}/12</span>
+                  <span className={`labora-mono text-[10px] ${invalidFields.includes('registerNumber') ? 'text-rose-600 dark:text-rose-400' : 'text-neutral-400 dark:text-[#A1A1AA]'}`}>{registerNumber.length}/12</span>
                 </div>
                 <motion.input
                   custom="registerNumber"
@@ -712,8 +756,11 @@ export default function DashboardPage() {
                   onChange={handleRegisterNumberChange}
                   placeholder="e.g., 211419104001"
                   maxLength={12}
-                  className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm labora-mono text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] tracking-wider transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
+                  className="labora-input aria-invalid:border-rose-500 aria-invalid:focus:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm labora-mono text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] tracking-wider transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
                 />
+                {invalidFields.includes('registerNumber') && (
+                  <p role="alert" className="mt-1.5 text-[11px] text-rose-600 dark:text-rose-400">Register number must contain exactly 12 letters or digits.</p>
+                )}
               </div>
             </div>
           </div>
@@ -738,7 +785,7 @@ export default function DashboardPage() {
             {experiments.map((exp, index) => {
               const expNumberFormatted = String(exp.experimentNo || index + 1).padStart(2, '0');
               const isOnlyOne = experiments.length === 1;
-              const hasValidLink = Boolean(exp.githubUrl.trim().startsWith('http'));
+              const hasValidLink = isValidGitHubUrl(exp.githubUrl);
 
               return (
                 <motion.div
@@ -749,7 +796,16 @@ export default function DashboardPage() {
                   exit={{ opacity: 0, y: -12, scale: 0.985 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 30, mass: 0.8 }}
                   id={index === 0 ? 'tour-exp-card-0' : `experiment-${exp.id}`}
-                  className="labora-panel rounded-2xl border border-neutral-200/90 dark:border-[#303030] bg-white dark:bg-[#191919] p-4 sm:p-5 shadow-[0_3px_16px_rgba(15,23,42,0.025)] hover:border-[var(--border-color)] dark:hover:border-[#444444]"
+                  onAnimationEnd={(event) => {
+                    if (event.animationName === 'labora-invalid-experiment') {
+                      setShakingExperiments(prev => prev.filter(value => value !== index));
+                    }
+                  }}
+                  className={`labora-panel rounded-2xl border bg-white dark:bg-[#191919] p-4 sm:p-5 shadow-[0_3px_16px_rgba(15,23,42,0.025)] ${
+                    invalidFields.includes(`title-${index}`) || invalidFields.includes(`githubUrl-${index}`)
+                      ? 'border-rose-400 dark:border-rose-500/70'
+                      : 'border-neutral-200/90 dark:border-[#303030] hover:border-[var(--border-color)] dark:hover:border-[#444444]'
+                  } ${shakingExperiments.includes(index) ? 'labora-shake-experiment' : ''}`}
                 >
                   <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-neutral-100 dark:border-[#303030]">
                     <div className="flex items-center gap-2">
@@ -817,7 +873,7 @@ export default function DashboardPage() {
                           </label>
                           {hasValidLink && (
                             <a
-                              href={exp.githubUrl}
+                              href={exp.githubUrl.trim()}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--text-secondary)] dark:text-[#A1A1AA] hover:text-[#F4F4F5] hover:underline"
@@ -838,8 +894,11 @@ export default function DashboardPage() {
                             handleUpdateExperiment(index, 'githubUrl', e.target.value)
                           }
                           placeholder="https://github.com/username/repository"
-                          className="labora-input aria-invalid:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
+                          className="labora-input aria-invalid:border-rose-500 aria-invalid:focus:border-rose-500 aria-invalid:ring-0 w-full rounded-xl border border-[#E5E5E5] dark:border-[#303030] bg-white dark:bg-[#141414] px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 dark:text-[#F4F4F5] placeholder:text-neutral-400 dark:placeholder:text-[#71717A] transition-colors duration-150 outline-none focus:outline-none focus:border-[#3B5BDB] dark:focus:border-[#3B5BDB] focus:ring-0"
                         />
+                        {invalidFields.includes(`githubUrl-${index}`) && (
+                          <p role="alert" className="mt-1.5 text-[11px] text-rose-600 dark:text-rose-400">Enter a valid GitHub URL (https://github.com/owner/repo).</p>
+                        )}
                       </div>
                     </div>
                   </div>
